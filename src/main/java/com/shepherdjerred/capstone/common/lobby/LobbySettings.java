@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public class LobbySettings {
+public final class LobbySettings {
 
   private final String name;
   private final MatchSettings matchSettings;
