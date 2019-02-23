@@ -15,7 +15,7 @@ public final class LobbySettings {
   private final String name;
   private final MatchSettings matchSettings;
   private final LobbyType lobbyType;
-  private final boolean canHaveDuplicateElements;
+  private final boolean arePlayersAllowedToUseSameElement;
 
   public enum LobbyType {
     LOCAL, NETWORK

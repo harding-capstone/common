@@ -26,6 +26,15 @@ public final class Lobby {
     this.elementCounts = elementCounts;
   }
 
+  public boolean isReady() {
+    var sameElement = lobbySettings.isArePlayersAllowedToUseSameElement();
+    if (sameElement) {
+      return areElementsUnique() && isFull();
+    } else {
+      return isFull();
+    }
+  }
+
   public boolean areElementsUnique() {
     return elementCounts.areUnique();
   }

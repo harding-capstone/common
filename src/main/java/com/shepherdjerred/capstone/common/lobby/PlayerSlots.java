@@ -24,7 +24,7 @@ final class PlayerSlots {
   // TODO this could be better
   static PlayerSlots forPlayerCount(PlayerCount playerCount) {
     Map<PlayerId, Player> playerIdMap = new HashMap<>();
-    for (int i = 0; i < playerCount.toInt(); i++) {
+    for (int i = 1; i < playerCount.toInt(); i++) {
       var playerId = PlayerId.fromInt(i);
       playerIdMap.put(playerId, null);
     }
