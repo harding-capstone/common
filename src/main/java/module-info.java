@@ -1,7 +1,7 @@
-module com.shepherdjererd.capstone.common {
+module com.shepherdjerred.capstone.common {
   requires static lombok;
   requires com.google.common;
-  requires com.shepherdjererd.capstone.logic;
+  requires com.shepherdjerred.capstone.logic;
   exports com.shepherdjerred.capstone.common.chat;
   exports com.shepherdjerred.capstone.common.lobby;
   exports com.shepherdjerred.capstone.common.player;
