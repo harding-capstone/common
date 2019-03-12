@@ -1,7 +1,7 @@
 package com.shepherdjerred.capstone.common.lobby;
 
 import com.shepherdjerred.capstone.common.player.Player;
-import com.shepherdjerred.capstone.logic.player.PlayerId;
+import com.shepherdjerred.capstone.logic.player.QuoridorPlayer;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -14,7 +14,7 @@ public final class Lobby {
   private final ElementCounts elementCounts;
 
   public static Lobby fromLobbySettings(LobbySettings lobbySettings) {
-    var playerCount = lobbySettings.getMatchSettings().getBoardSettings().getPlayerCount();
+    var playerCount = lobbySettings.getBoardSettings().getPlayerCount();
     var playerSlots = PlayerSlots.forPlayerCount(playerCount);
     var elementCounts = new ElementCounts();
     return new Lobby(lobbySettings, playerSlots, elementCounts);
@@ -43,13 +43,13 @@ public final class Lobby {
     return playerSlots.areSlotsFull();
   }
 
-  public Lobby addPlayer(PlayerId playerId, Player player) {
+  public Lobby addPlayer(QuoridorPlayer playerId, Player player) {
     var newPlayerSlots = playerSlots.setPlayer(playerId, player);
     var newElementCounts = elementCounts.increment(player.getElement());
     return new Lobby(lobbySettings, newPlayerSlots, newElementCounts);
   }
 
-  public Lobby updatePlayer(PlayerId playerId, Player newPlayer) {
+  public Lobby updatePlayer(QuoridorPlayer playerId, Player newPlayer) {
     var oldPlayer = playerSlots.getPlayer(playerId);
     var newElementCounts = elementCounts;
     if (oldPlayer.getElement() != newPlayer.getElement()) {
@@ -60,7 +60,7 @@ public final class Lobby {
     return new Lobby(lobbySettings, newPlayerSlots, newElementCounts);
   }
 
-  public Lobby removePlayer(PlayerId playerId) {
+  public Lobby removePlayer(QuoridorPlayer playerId) {
     var player = playerSlots.getPlayer(playerId);
     var newPlayerSlots = playerSlots.removePlayer(playerId);
     var newElementCounts = elementCounts.decrement(player.getElement());
