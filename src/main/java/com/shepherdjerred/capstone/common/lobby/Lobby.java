@@ -13,7 +13,7 @@ public final class Lobby {
   private final PlayerSlots playerSlots;
   private final ElementCounts elementCounts;
 
-  public static Lobby fromLobbySettings(LobbySettings lobbySettings) {
+  public static Lobby from(LobbySettings lobbySettings) {
     var playerCount = lobbySettings.getBoardSettings().getPlayerCount();
     var playerSlots = PlayerSlots.forPlayerCount(playerCount);
     var elementCounts = new ElementCounts();
