@@ -43,8 +43,8 @@ public final class Lobby {
     return playerSlots.areSlotsFull();
   }
 
-  public Lobby addPlayer(QuoridorPlayer playerId, Player player) {
-    var newPlayerSlots = playerSlots.setPlayer(playerId, player);
+  public Lobby addPlayer(Player player) {
+    var newPlayerSlots = playerSlots.addPlayer(player);
     var newElementCounts = elementCounts.increment(player.getElement());
     return new Lobby(lobbySettings, newPlayerSlots, newElementCounts);
   }

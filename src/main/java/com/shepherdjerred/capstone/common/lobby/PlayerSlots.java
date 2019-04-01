@@ -67,4 +67,12 @@ final class PlayerSlots {
     newQuoridorPlayerMap.put(playerId, player);
     return new PlayerSlots(newQuoridorPlayerMap, playerCount);
   }
+
+  PlayerSlots addPlayer(Player player) {
+    checkNotNull(player);
+
+    var newQuoridorPlayerMap = new HashMap<>(playerIdMap);
+    newQuoridorPlayerMap.put(QuoridorPlayer.fromInt(playerIdMap.size() + 1), player);
+    return new PlayerSlots(newQuoridorPlayerMap, playerCount);
+  }
 }
