@@ -18,7 +18,7 @@ public class ChatMessage implements Comparable<ChatMessage> {
   private final Instant time;
 
   @Override
-  public int compareTo(ChatMessage o) {
-    return time.compareTo(o.getTime());
+  public int compareTo(ChatMessage chatMessage) {
+    return time.compareTo(chatMessage.getTime());
   }
 }
