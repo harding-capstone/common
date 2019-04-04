@@ -70,6 +70,16 @@ final class PlayerSlots {
 
   PlayerSlots addPlayer(Player player) {
     checkNotNull(player);
-    return setPlayer(QuoridorPlayer.fromInt(playerIdMap.size() + 1), player);
+
+    QuoridorPlayer playerId = null;
+
+    for (Map.Entry<QuoridorPlayer, Player> pair : playerIdMap.entrySet()) {
+      if (pair.getValue() == null) {
+        playerId = pair.getKey();
+        break;
+      }
+    }
+
+    return setPlayer(playerId, player);
   }
 }
