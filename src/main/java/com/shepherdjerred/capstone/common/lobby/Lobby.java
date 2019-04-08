@@ -66,4 +66,8 @@ public final class Lobby {
     var newElementCounts = elementCounts.decrement(player.getElement());
     return new Lobby(lobbySettings, newPlayerSlots, newElementCounts);
   }
+
+  public Lobby removePlayer(Player player) {
+    return removePlayer(playerSlots.getPlayerIdByPlayer(player));
+  }
 }

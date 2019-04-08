@@ -53,6 +53,21 @@ final class PlayerSlots {
     return new PlayerSlots(newQuoridorPlayerMap, playerCount);
   }
 
+  QuoridorPlayer getPlayerIdByPlayer(Player player) {
+    checkNotNull(player);
+
+    QuoridorPlayer playerId = null;
+
+    for (Map.Entry<QuoridorPlayer, Player> pair : playerIdMap.entrySet()) {
+      if (pair.getValue().getUuid() == player.getUuid()) {
+        playerId = pair.getKey();
+        break;
+      }
+    }
+
+    return playerId;
+  }
+
   // TODO extract validation?
   PlayerSlots setPlayer(QuoridorPlayer playerId, Player player) {
     checkNotNull(playerId);
