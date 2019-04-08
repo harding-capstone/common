@@ -67,4 +67,19 @@ final class PlayerSlots {
     newQuoridorPlayerMap.put(playerId, player);
     return new PlayerSlots(newQuoridorPlayerMap, playerCount);
   }
+
+  PlayerSlots addPlayer(Player player) {
+    checkNotNull(player);
+
+    QuoridorPlayer playerId = null;
+
+    for (Map.Entry<QuoridorPlayer, Player> pair : playerIdMap.entrySet()) {
+      if (pair.getValue() == null) {
+        playerId = pair.getKey();
+        break;
+      }
+    }
+
+    return setPlayer(playerId, player);
+  }
 }
