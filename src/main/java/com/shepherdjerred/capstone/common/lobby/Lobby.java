@@ -3,12 +3,13 @@ package com.shepherdjerred.capstone.common.lobby;
 import com.shepherdjerred.capstone.common.player.Player;
 import com.shepherdjerred.capstone.logic.player.QuoridorPlayer;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
 public final class Lobby {
-
+  @Getter
   private final LobbySettings lobbySettings;
   private final PlayerSlots playerSlots;
   private final ElementCounts elementCounts;
