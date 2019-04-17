@@ -55,4 +55,8 @@ final class ElementCounts {
 
     return new ElementCounts(newElementCounts);
   }
+
+  public boolean hasElement(Element e) {
+    return elementCounts.containsKey(e) && elementCounts.get(e) > 0;
+  }
 }

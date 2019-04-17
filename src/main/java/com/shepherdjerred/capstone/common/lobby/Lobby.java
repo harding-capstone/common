@@ -1,5 +1,6 @@
 package com.shepherdjerred.capstone.common.lobby;
 
+import com.shepherdjerred.capstone.common.player.Element;
 import com.shepherdjerred.capstone.common.player.Player;
 import com.shepherdjerred.capstone.logic.player.QuoridorPlayer;
 import lombok.EqualsAndHashCode;
@@ -25,6 +26,18 @@ public final class Lobby {
     this.lobbySettings = lobbySettings;
     this.playerSlots = playerSlots;
     this.elementCounts = elementCounts;
+  }
+
+  public Lobby UpdateLobbySettings(LobbySettings lobbySettings) {
+    return new Lobby(lobbySettings, this.playerSlots, this.elementCounts);
+  }
+
+  public Element getNextElement() {
+    for (Element e : Element.values()) {
+      if (elementCounts.hasElement(e))
+        return e;
+    }
+    return null;
   }
 
   public boolean isReady() {
