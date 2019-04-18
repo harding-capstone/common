@@ -16,7 +16,7 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-final class PlayerSlots {
+class PlayerSlots {
 
   private final Map<QuoridorPlayer, Player> playerIdMap;
   private final PlayerCount playerCount;

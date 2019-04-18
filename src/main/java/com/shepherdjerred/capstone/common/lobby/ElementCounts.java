@@ -3,8 +3,9 @@ package com.shepherdjerred.capstone.common.lobby;
 import com.shepherdjerred.capstone.common.player.Element;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
-final class ElementCounts {
+class ElementCounts {
 
   private final Map<Element, Integer> elementCounts;
 
@@ -23,6 +24,15 @@ final class ElementCounts {
       }
     }
     return true;
+  }
+
+  Optional<Element> getNextFreeElement() {
+    for (Element element : Element.values()) {
+      if (!hasElement(element)) {
+        return Optional.of(element);
+      }
+    }
+    return Optional.empty();
   }
 
   ElementCounts increment(Element e) {

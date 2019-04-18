@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public final class HumanPlayer implements Player {
+public class HumanPlayer implements Player {
 
   private final UUID uuid;
   private final String name;

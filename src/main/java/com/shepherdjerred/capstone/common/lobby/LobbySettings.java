@@ -11,13 +11,13 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public final class LobbySettings {
+public class LobbySettings {
 
   private final String name;
   private final MatchSettings matchSettings;
   private final BoardSettings boardSettings;
   private final LobbyType lobbyType;
-  private final boolean arePlayersAllowedToUseSameElement;
+  private final boolean isDuplicateElementsEnabled;
 
   public enum LobbyType {
     LOCAL, NETWORK
