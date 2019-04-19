@@ -97,4 +97,16 @@ class PlayerSlots {
 
     return setPlayer(playerId, player);
   }
+
+  int getFreeSlots() {
+    return playerCount.toInt() - playerIdMap.size();
+  }
+
+  int getTakenSlots() {
+    return playerIdMap.size();
+  }
+
+  int getMaxSlots() {
+    return playerCount.toInt();
+  }
 }
