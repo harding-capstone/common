@@ -4,7 +4,9 @@ import com.shepherdjerred.capstone.common.player.Element;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import lombok.ToString;
 
+@ToString
 class ElementCounts {
 
   private final Map<Element, Integer> elementCounts;

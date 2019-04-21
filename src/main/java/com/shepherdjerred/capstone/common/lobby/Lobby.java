@@ -78,6 +78,10 @@ public class Lobby {
         Difficulty.HARD);
   }
 
+  public QuoridorPlayer getPlayer(Player player) {
+    return playerSlots.getPlayerIdByPlayer(player);
+  }
+
   public Player getPlayer(QuoridorPlayer player) {
     return playerSlots.getPlayer(player);
   }

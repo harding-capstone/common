@@ -2,7 +2,9 @@ package com.shepherdjerred.capstone.common.chat;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
+import lombok.ToString;
 
+@ToString
 public class ChatHistory {
 
   private final SortedSet<ChatMessage> messages;
