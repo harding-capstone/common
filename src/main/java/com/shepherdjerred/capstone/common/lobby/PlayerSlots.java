@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * Maps QuoridorPlayers to Players.
+ * GameMap QuoridorPlayers to Players.
  */
 @ToString
 @EqualsAndHashCode
@@ -24,7 +24,7 @@ class PlayerSlots {
   // TODO this could be better
   static PlayerSlots forPlayerCount(PlayerCount playerCount) {
     Map<QuoridorPlayer, Player> playerIdMap = new HashMap<>();
-    for (int i = 1; i < playerCount.toInt(); i++) {
+    for (int i = 1; i < playerCount.toInt() + 1; i++) {
       var playerId = QuoridorPlayer.fromInt(i);
       playerIdMap.put(playerId, null);
     }
@@ -39,6 +39,10 @@ class PlayerSlots {
 
   boolean areSlotsFull() {
     return playerCount.toInt() == playerIdMap.size();
+  }
+
+  boolean hasEmptySlot() {
+    return playerCount.toInt() < playerIdMap.size();
   }
 
   Player getPlayer(QuoridorPlayer playerId) {
@@ -68,7 +72,6 @@ class PlayerSlots {
     return playerId;
   }
 
-  // TODO extract validation?
   PlayerSlots setPlayer(QuoridorPlayer playerId, Player player) {
     checkNotNull(playerId);
     checkNotNull(player);
@@ -99,11 +102,18 @@ class PlayerSlots {
   }
 
   int getFreeSlots() {
-    return playerCount.toInt() - playerIdMap.size();
+    return playerIdMap.values().stream()
+        .mapToInt(player -> {
+          if (player == null) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }).sum();
   }
 
   int getTakenSlots() {
-    return playerIdMap.size();
+    return getMaxSlots() - getFreeSlots();
   }
 
   int getMaxSlots() {

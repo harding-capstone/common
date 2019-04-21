@@ -1,9 +1,11 @@
 package com.shepherdjerred.capstone.common.lobby;
 
+import com.shepherdjerred.capstone.common.GameMap;
 import com.shepherdjerred.capstone.common.lobby.LobbySettings.LobbyType;
+import com.shepherdjerred.capstone.common.player.AiPlayer;
+import com.shepherdjerred.capstone.common.player.AiPlayer.Difficulty;
 import com.shepherdjerred.capstone.common.player.Element;
 import com.shepherdjerred.capstone.common.player.Player;
-import com.shepherdjerred.capstone.logic.board.BoardSettings;
 import com.shepherdjerred.capstone.logic.match.MatchSettings;
 import com.shepherdjerred.capstone.logic.player.PlayerCount;
 import com.shepherdjerred.capstone.logic.player.QuoridorPlayer;
@@ -12,6 +14,7 @@ import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import org.ajbrown.namemachine.NameGenerator;
 
 @ToString
 @EqualsAndHashCode
@@ -27,17 +30,17 @@ public class Lobby {
   public static Lobby fromDefaultLobbySettings(String lobbyName) {
     var lobbySettings = new LobbySettings(lobbyName,
         new MatchSettings(10, QuoridorPlayer.ONE, PlayerCount.TWO),
-        new BoardSettings(9, PlayerCount.TWO),
         LobbyType.LOCAL,
-        false);
-    var playerCount = lobbySettings.getBoardSettings().getPlayerCount();
+        false,
+        GameMap.GRASS);
+    var playerCount = lobbySettings.getMatchSettings().getPlayerCount();
     var playerSlots = PlayerSlots.forPlayerCount(playerCount);
     var elementCounts = new ElementCounts();
     return new Lobby(UUID.randomUUID(), lobbySettings, playerSlots, elementCounts);
   }
 
   public static Lobby from(LobbySettings lobbySettings) {
-    var playerCount = lobbySettings.getBoardSettings().getPlayerCount();
+    var playerCount = lobbySettings.getMatchSettings().getPlayerCount();
     var playerSlots = PlayerSlots.forPlayerCount(playerCount);
     var elementCounts = new ElementCounts();
     return new Lobby(UUID.randomUUID(), lobbySettings, playerSlots, elementCounts);
@@ -65,6 +68,18 @@ public class Lobby {
     } else {
       return isFull();
     }
+  }
+
+  public AiPlayer createAiPlayer() {
+    var generator = new NameGenerator();
+    return new AiPlayer(UUID.randomUUID(),
+        generator.generateName().getFirstName(),
+        getFreeElement().get(),
+        Difficulty.HARD);
+  }
+
+  public Player getPlayer(QuoridorPlayer player) {
+    return playerSlots.getPlayer(player);
   }
 
   public Optional<Element> getFreeElement() {

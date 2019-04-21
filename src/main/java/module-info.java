@@ -1,6 +1,6 @@
 module com.shepherdjerred.capstone.common {
   requires static lombok;
-  requires com.google.common;
+  requires name.machine;
   requires com.shepherdjerred.capstone.logic;
 
   exports com.shepherdjerred.capstone.common;

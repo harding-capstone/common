@@ -1,6 +1,6 @@
 package com.shepherdjerred.capstone.common.lobby;
 
-import com.shepherdjerred.capstone.logic.board.BoardSettings;
+import com.shepherdjerred.capstone.common.GameMap;
 import com.shepherdjerred.capstone.logic.match.MatchSettings;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -15,9 +15,9 @@ public class LobbySettings {
 
   private final String name;
   private final MatchSettings matchSettings;
-  private final BoardSettings boardSettings;
   private final LobbyType lobbyType;
   private final boolean isDuplicateElementsEnabled;
+  private final GameMap gameMap;
 
   public enum LobbyType {
     LOCAL, NETWORK

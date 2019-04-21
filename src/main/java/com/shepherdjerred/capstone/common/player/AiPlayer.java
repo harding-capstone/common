@@ -18,6 +18,6 @@ public class AiPlayer implements Player {
   private final Difficulty difficulty;
 
   public enum Difficulty {
-    EASY, MEDIUM, HARD
+    HARD
   }
 }
