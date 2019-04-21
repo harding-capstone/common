@@ -38,11 +38,11 @@ class PlayerSlots {
   }
 
   boolean areSlotsFull() {
-    return playerCount.toInt() == playerIdMap.size();
+    return getFreeSlots() <= 0;
   }
 
   boolean hasEmptySlot() {
-    return playerCount.toInt() < playerIdMap.size();
+    return getFreeSlots() > 0;
   }
 
   Player getPlayer(QuoridorPlayer playerId) {
