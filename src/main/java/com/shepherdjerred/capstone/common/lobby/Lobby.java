@@ -108,6 +108,11 @@ public class Lobby {
     return new Lobby(uuid, lobbySettings, newPlayerSlots, newElementCounts);
   }
 
+  public Lobby setPlayer(Player player, QuoridorPlayer quoridorPlayer) {
+    var newPlayerSlots = playerSlots.setPlayer(quoridorPlayer, player);
+    return new Lobby(uuid, lobbySettings, newPlayerSlots, elementCounts);
+  }
+
   public Lobby updatePlayer(QuoridorPlayer playerId, Player newPlayer) {
     var oldPlayer = playerSlots.getPlayer(playerId);
     var newElementCounts = elementCounts;
