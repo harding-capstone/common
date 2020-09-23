@@ -5,15 +5,12 @@ jdk:
 sudo: false
 notifications:
   email: false
-  slack:
-    secure: aOI/8Ui/vIsEUcZCbgiQuOHODc6gR4N0pyOmSVv6voqwTZlYf4YQeaIrS7CbIuJMlw90VAFnivyRuU8T6YTI8fxySxioZL4/XD51Bzqt+tzGeqX4qH0Qz/9uNv82y5EpwXvLubFD7xjHtpxbtQrebEBlb7kZLPy6dPyl4eXiUZgHEkOH+fJNb/Dcmps2S1ugmQu60piCxkYN4ipGq0c57Zr0SLkLQBcFK3cjPruq1FCWpgCtshBVyLUabo9RwNFqndV0hPXaLXhIFiu3vtFVKyWhBdrZ+xG4e3tN1eo+HaZxpcSd27s4QvNeFiFpFVTyShnHP1WZbVTfcneBZaJLMp/W+ZqwrVWcFJVQQQooBfK56RuGtSS9OQc7D4SjVsZXSck+7LCHebzqdHPDh5nWb4cnN7u+lZruV58dwD32ywbhOfA/Rn0FQ7Ur/YVRkS11UIGa7PwoAgA+8Jkv7E1W9ZJ0HTZikevtcZNZgKhwRytRwzgWVFZc14OthQdFbUjGSv+Vg86ikgOxNhgeRTLCObwMM7Tdw/Tl3GNbPZxzBoAMGyNFYKMHmbW/hSVNUoG67w53yO/HQgpqyUcl8sypFPtJ0EqCMGgGia+cMXLZhJzet/JaNqkBEEtH0akDW4ksYFjj394WMSfTJfCntL+gcUoHSlMg7BEOIPmW/bbP2aY=
 after_success:
 - mvn clean test jacoco:report coveralls:report
+before_install: "cp travis-settings.xml $HOME/.m2/settings.xml"
 deploy:
   provider: script
-  script: mvn deploy --settings travis-settings.xml -DskipTests=true -B
+  script: "mvn deploy"
   on:
-    jdk: oraclejdk11
-cache:
-  directories:
-  - "$HOME/.m2"
+    branch: master
+    jdk: openjdk11
